@@ -1,23 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { useWeb3React } from '@web3-react/core';
+import { Web3Provider } from '@ethersproject/providers';
+import { useEagerConnect, useInactiveListener } from './hooks/hooks';
+import { Button } from '@material-ui/core';
+import { injected } from './connectors/injected';
 
 function App() {
+  const [activatingConnector, setActivatingConnector] = React.useState();
+
+  const web3React = useWeb3React<Web3Provider>();
+  const { connector, account, activate, deactivate, active } = web3React;
+
+  console.log(web3React);
+  console.log(connector);
+  React.useEffect(() => {
+    if (activatingConnector && activatingConnector === connector) {
+      setActivatingConnector(undefined);
+    }
+  }, [activatingConnector, connector]);
+
+  const triedEager = useEagerConnect();
+  useInactiveListener(!triedEager || !!activatingConnector);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>{account} </p>
+
+        {active === false ? (
+          <Button
+            onClick={() => activate(injected, undefined, true)}
+            color="primary"
+          >
+            Connect
+          </Button>
+        ) : (
+          <Button onClick={deactivate} color="primary">
+            {' '}
+            Disconnect
+          </Button>
+        )}
       </header>
     </div>
   );
