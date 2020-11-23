@@ -1,10 +1,11 @@
-import React from 'react';
-import './App.css';
-import { useWeb3React } from '@web3-react/core';
-import { Web3Provider } from '@ethersproject/providers';
-import { useEagerConnect, useInactiveListener } from './hooks/hooks';
-import { Button } from '@material-ui/core';
-import { injected } from './connectors/injected';
+import React from "react";
+import "./App.css";
+import { useWeb3React } from "@web3-react/core";
+import { Web3Provider } from "@ethersproject/providers";
+import { useEagerConnect, useInactiveListener } from "./hooks/hooks";
+import { Button } from "@material-ui/core";
+import { injected } from "./connectors/injected";
+import Navbar from "./components/NavBar";
 
 function App() {
   const [activatingConnector, setActivatingConnector] = React.useState();
@@ -25,23 +26,22 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <p>{account} </p>
+      <Navbar></Navbar>
+      <p>{account} </p>
 
-        {active === false ? (
-          <Button
-            onClick={() => activate(injected, undefined, true)}
-            color="primary"
-          >
-            Connect
-          </Button>
-        ) : (
-          <Button onClick={deactivate} color="primary">
-            {' '}
-            Disconnect
-          </Button>
-        )}
-      </header>
+      {active === false ? (
+        <Button
+          onClick={() => activate(injected, undefined, true)}
+          color="primary"
+        >
+          Connect
+        </Button>
+      ) : (
+        <Button onClick={deactivate} color="primary">
+          {" "}
+          Disconnect
+        </Button>
+      )}
     </div>
   );
 }
