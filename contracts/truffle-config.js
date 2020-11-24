@@ -1,20 +1,29 @@
+var HDWalletProvider = require("truffle-hdwallet-provider");
+//test only, do not use!
+var mnemonic = "hobby junior pass moon spin slim edit venue either ceiling ensure yard";
+var rinkebyEndpoint = "https://rinkeby.infura.io/v3/0cd25f13fa42452181039a22154c025a";
+
 
 module.exports = {
-
-
   networks: {
-
-     development: {
-      host: "127.0.0.1",     // Localhost (default: none)
-      port: 8545,            // Standard Ethereum port (default: none)
-      network_id: "*",       // Any network (default: none)
-     }
+    development: {
+      host: "localhost",
+      port: 8545,
+      network_id: "*" // Match any network id
+    },
+    rinkeby: {
+      provider: () => new HDWalletProvider(mnemonic, rinkebyEndpoint),
+      gasPrice: 50000000000, // 50 gwei,
+      gas: 4600000,
+      network_id: 4,
+    },
   },
-
-  mocha: {
+  solc: {
+    optimizer: {
+      enabled: true,
+      runs: 200
+    }
   },
-
-  // Configure your compilers
   compilers: {
     solc: {
        version: "0.6.2",   
