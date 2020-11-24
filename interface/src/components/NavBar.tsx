@@ -4,7 +4,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { useWeb3React } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
-import { useEagerConnect, useInactiveListener } from "../hooks/hooks";
+import { useEagerConnect, useInactiveListener } from "../hooks";
 import { injected } from "../connectors/injected";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
