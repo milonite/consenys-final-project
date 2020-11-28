@@ -3,13 +3,24 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "@material-ui/styles";
 import { Web3ReactProvider } from "@web3-react/core";
 import getLibrary from "./utils/getLibrary";
+import { getTheme } from "./theme";
+import { CssBaseline } from "@material-ui/core";
+
+const theme = getTheme();
 
 ReactDOM.render(
   <React.StrictMode>
     <Web3ReactProvider getLibrary={getLibrary}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
     </Web3ReactProvider>
   </React.StrictMode>,
   document.getElementById("root")
