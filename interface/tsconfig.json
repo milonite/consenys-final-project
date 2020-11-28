@@ -21,6 +21,6 @@
     "jsx": "react"
   },
   "include": [
-    "src"
+    "src", "src/components/P5Art/lib/p5.min.js"
   ]
 }
