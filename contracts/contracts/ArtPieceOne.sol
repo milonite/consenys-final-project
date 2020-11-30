@@ -7,8 +7,17 @@ import "../node_modules/openzeppelin-solidity/contracts/utils/Counters.sol";
 contract ArtPieceOne is ERC721 {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
+    address private _owner;
+    event OwnershipTransferred(
+        address indexed previousOwner,
+        address indexed newOwner
+    );
 
-    constructor() public ERC721("ArtPieceOne", "ART1") {}
+    constructor() public ERC721("ArtPieceOne", "ART1") {
+        address msgSender = msg.sender;
+        _owner = msgSender;
+        emit OwnershipTransferred(address(0), msgSender);
+    }
 
     function tokenizeGeneratedArt(address user, string memory tokenURI)
         public
@@ -23,5 +32,15 @@ contract ArtPieceOne is ERC721 {
         _setTokenURI(newItemId, tokenURI);
 
         return newItemId;
+    }
+
+    function transferOwnership(address newOwner) public payable {
+        require(
+            newOwner != address(0),
+            "Ownable: new owner is the zero address"
+        );
+        require(msg.value == 2 ether);
+        emit OwnershipTransferred(_owner, newOwner);
+        _owner = newOwner;
     }
 }
