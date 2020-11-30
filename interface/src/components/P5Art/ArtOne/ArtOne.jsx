@@ -21,7 +21,6 @@ export default function art(props) {
 
     const setup = (p, canvasParentRef) => {
         p.createCanvas(440, 400).parent(canvasParentRef);
-        p.randomSeed(THE_SEED);
         p.noLoop();
         p.fill('#eeeee8');
         p.background('white');

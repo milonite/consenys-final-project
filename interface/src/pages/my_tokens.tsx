@@ -18,13 +18,10 @@ function Buy() {
         const tokenIds = [];
         for (let i = 0; i < balance.toNumber(); i++) {
           const id = await contract.tokenOfOwnerByIndex(account, i);
-          const tokenURI = await contract.tokenURI(id);
-          console.log(tokenURI);
           tokenIds.push(id);
         }
         for (const tokenId of tokenIds) {
           const tokenUri = await contract.tokenURI(tokenId);
-          console.log(tokenUri);
           setEntropies((entropies: []) => [...entropies, tokenUri]);
         }
       }
@@ -34,9 +31,7 @@ function Buy() {
 
   return (
     <div>
-      {entropies.forEach((entropy: string[]) => {
-        <ArtOne entropy={entropy}></ArtOne>;
-      })}
+      <ArtOne entropy={25}></ArtOne>
     </div>
   );
 }
