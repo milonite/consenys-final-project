@@ -8,12 +8,19 @@ contract ArtPieceOne is ERC721 {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
     address private _owner;
+    uint256 private _price;
+
     event OwnershipTransferred(
         address indexed previousOwner,
         address indexed newOwner
     );
 
     constructor() public ERC721("ArtPieceOne", "ART1") {
+        //set a default price
+        uint256 defaultPrice = 2;
+        _price = defaultPrice;
+
+        //set contract owner
         address msgSender = msg.sender;
         _owner = msgSender;
         emit OwnershipTransferred(address(0), msgSender);
