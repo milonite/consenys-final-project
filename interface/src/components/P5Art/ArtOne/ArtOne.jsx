@@ -3,7 +3,7 @@ import Sketch from "react-p5";
 import BlockBuilder from './logic.js';
 
 export default function art(props) {
-    let THE_SEED= props.entropy;
+    
     let xdim = 10;
     let ydim = 50;
     let radius = 23;
@@ -32,7 +32,7 @@ export default function art(props) {
           p.color(49, 69, 80)
         ];
     
-        builder = new BlockBuilder(xdim, ydim, radius, chance_start, chance_extend, chance_vertical, colors);
+        builder = new BlockBuilder(xdim, ydim, radius, chance_start, chance_extend, chance_vertical, colors,props.entropy);
     };
  
     const draw = (p) => {

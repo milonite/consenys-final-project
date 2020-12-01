@@ -1,5 +1,9 @@
+import seedrandom from 'seedrandom'
+
+
 export default class Logic {
-  constructor(x, y, r, c_new, c_ext, c_vert, cols) {
+  constructor(x, y, r, c_new, c_ext, c_vert, cols,seed) {
+    seedrandom(seed, { global: true });
     this.grid_dim_x = x;
     this.grid_dim_y = y;
     this.radius = r;
