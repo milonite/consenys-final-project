@@ -25,8 +25,8 @@ function Buy() {
         for (const tokenId of tokenIds) {
           const tokenUri = await contract.tokenURI(tokenId);
           setEntropies((entropies: []) => [...entropies, tokenUri]);
-          setLoading(false);
         }
+        setLoading(false);
       }
     };
     getBalance();
@@ -34,12 +34,14 @@ function Buy() {
 
   return (
     <Grid container>
-      {entropies.lenght === 0
+      {loading
         ? "....loading"
-        : entropies.forEach((element: any) => {
-            <Grid item>
-              <ArtOne entropy={parseInt(entropies[0])}></ArtOne>
-            </Grid>;
+        : entropies.map((entropy: string) => {
+            return (
+              <Grid item>
+                <ArtOne entropy={parseFloat(entropy)}></ArtOne>
+              </Grid>
+            );
           })}
     </Grid>
   );

@@ -78,23 +78,6 @@ export default function ButtonAppBar() {
               <Typography variant="h5"> G-Net ✶</Typography>
             </Grid>
             <Grid>
-              {active === false ? (
-                <Button onClick={() => activate(injected, undefined, true)}>
-                  Connect
-                </Button>
-              ) : (
-                <Typography variant="caption" noWrap>
-                  {account ? shortenAddress(account) : account}
-                </Typography>
-              )}
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </AppBar>
-      <AppBar position="static">
-        <Toolbar>
-          <Grid container direction="row" justify="center" alignItems="center">
-            <Grid>
               <Tabs
                 value={value}
                 onChange={handleChange}
@@ -115,7 +98,28 @@ export default function ButtonAppBar() {
                 />
               </Tabs>
             </Grid>
+            <Grid>
+              {active === false ? (
+                <Button onClick={() => activate(injected, undefined, true)}>
+                  Connect
+                </Button>
+              ) : (
+                <Typography variant="caption" noWrap>
+                  {account ? shortenAddress(account) : account}
+                </Typography>
+              )}
+            </Grid>
           </Grid>
+        </Toolbar>
+      </AppBar>
+      <AppBar position="static">
+        <Toolbar>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+          ></Grid>
         </Toolbar>
       </AppBar>
     </div>
