@@ -20,7 +20,7 @@ export default function art(props) {
 
 
     const setup = (p, canvasParentRef) => {
-        p.createCanvas(440, 400).parent(canvasParentRef);
+        p.createCanvas(400, 400).parent(canvasParentRef);
         p.noLoop();
         p.fill('#eeeee8');
         p.background('white');

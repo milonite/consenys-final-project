@@ -1,3 +1,4 @@
+//art by @kgolid
 import seedrandom from 'seedrandom'
 
 

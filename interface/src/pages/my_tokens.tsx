@@ -16,15 +16,20 @@ function Buy() {
     setLoading(true);
     const getBalance = async () => {
       if (contract) {
-        const balance = await contract.balanceOf(account);
-        const tokenIds = [];
-        for (let i = 0; i < balance.toNumber(); i++) {
-          const id = await contract.tokenOfOwnerByIndex(account, i);
-          tokenIds.push(id);
-        }
-        for (const tokenId of tokenIds) {
-          const tokenUri = await contract.tokenURI(tokenId);
-          setEntropies((entropies: []) => [...entropies, tokenUri]);
+        try {
+          const balance = await contract.balanceOf(account);
+          const tokenIds = [];
+
+          for (let i = 0; i < balance.toNumber(); i++) {
+            const id = await contract.tokenOfOwnerByIndex(account, i);
+            tokenIds.push(id);
+          }
+          for (const tokenId of tokenIds) {
+            const tokenUri = await contract.tokenURI(tokenId);
+            setEntropies((entropies: []) => [...entropies, tokenUri]);
+          }
+        } catch {
+          console.log("error");
         }
         setLoading(false);
       }

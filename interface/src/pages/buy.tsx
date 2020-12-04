@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ArtOne from "../components/P5Art/ArtOne/ArtOne";
+import Psycho from "../components/P5Art/kgolid_psycho/KGolidPsycho";
 import { Button } from "@material-ui/core";
 import { useArtPieceOne } from "../hooks/useContract";
 import { useWeb3React } from "@web3-react/core";
@@ -32,6 +33,7 @@ function Buy() {
   return (
     <div>
       <ArtOne entropy={entropy}></ArtOne>
+      <Psycho entropy={entropy}></Psycho>
       <Button color="primary" variant="contained" onClick={generateArt}>
         CREATE TOKEN
       </Button>{" "}
