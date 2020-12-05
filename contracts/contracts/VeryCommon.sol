@@ -63,7 +63,7 @@ contract VeryCommon is ERC721 {
             newOwner != address(0),
             "Ownable: new owner is the zero address"
         );
-        require(msg.value == priceCollection);
+        require(msg.value == priceCollection, "Price too low");
         emit OwnershipTransferred(owner, newOwner);
         owner = newOwner;
     }

@@ -1,40 +1,59 @@
 const VeryCommon = artifacts.require("VeryCommon");
 
+randomN = Math.random()
+const pricePiece = web3.utils.toWei("0.02",'ether')
+const priceCollection = web3.utils.toWei("2",'ether')
+
 contract('VeryCommon', (accounts) => {
-  it('should put 10000 MetaCoin in the first account', async () => {
-    const metaCoinInstance = await MetaCoin.deployed();
-    const balance = await metaCoinInstance.getBalance.call(accounts[0]);
+  it('should tokenize random number', async () => {
+    const VeryCommonInstance = await VeryCommon.deployed();
 
-    assert.equal(balance.valueOf(), 10000, "10000 wasn't in the first account");
+    const tokenId = await VeryCommonInstance.tokenizeGeneratedArt.call(accounts[0],randomN.toString(),{value: pricePiece});
+    assert.equal(tokenId, 1, "TokenId expected to be 1");
+
+
+    await VeryCommonInstance.tokenizeGeneratedArt(accounts[0],randomN.toString(),{value: pricePiece});
+    const balance = await VeryCommonInstance.balanceOf(accounts[0]);
+    assert.equal(balance.toString(), 1, "Balance expected to be 1");
+
   });
-  it('should call a function that depends on a linked library', async () => {
-    const metaCoinInstance = await MetaCoin.deployed();
-    const metaCoinBalance = (await metaCoinInstance.getBalance.call(accounts[0])).toNumber();
-    const metaCoinEthBalance = (await metaCoinInstance.getBalanceInEth.call(accounts[0])).toNumber();
+  it('should transfer ownership when bought', async () => {
+    const VeryCommonInstance = await VeryCommon.deployed();
+    
+    const newOwner = accounts[1]
 
-    assert.equal(metaCoinEthBalance, 2 * metaCoinBalance, 'Library function returned unexpected function, linkage may be broken');
+    await VeryCommonInstance.transferOwnership(newOwner,{value: priceCollection});
+    const owner = await VeryCommonInstance.owner.call()
+
+
+    assert.equal(newOwner, owner, "New owner expect to be current owner");
   });
-  it('should send coin correctly', async () => {
-    const metaCoinInstance = await MetaCoin.deployed();
+  it('should change the price to the collection', async () => {
+    const VeryCommonInstance = await VeryCommon.deployed();
+    const newPrice = web3.utils.toWei("4",'ether')
 
-    // Setup 2 accounts.
-    const accountOne = accounts[0];
-    const accountTwo = accounts[1];
+    await VeryCommonInstance.changePriceCollection(newPrice,{from: accounts[1]});
+    const price = await VeryCommonInstance.priceCollection.call()
 
-    // Get initial balances of first and second account.
-    const accountOneStartingBalance = (await metaCoinInstance.getBalance.call(accountOne)).toNumber();
-    const accountTwoStartingBalance = (await metaCoinInstance.getBalance.call(accountTwo)).toNumber();
-
-    // Make transaction from first account to second.
-    const amount = 10;
-    await metaCoinInstance.sendCoin(accountTwo, amount, { from: accountOne });
-
-    // Get balances of first and second account after the transactions.
-    const accountOneEndingBalance = (await metaCoinInstance.getBalance.call(accountOne)).toNumber();
-    const accountTwoEndingBalance = (await metaCoinInstance.getBalance.call(accountTwo)).toNumber();
-
-
-    assert.equal(accountOneEndingBalance, accountOneStartingBalance - amount, "Amount wasn't correctly taken from the sender");
-    assert.equal(accountTwoEndingBalance, accountTwoStartingBalance + amount, "Amount wasn't correctly sent to the receiver");
+    assert.equal(newPrice, price, "New price expected to be current collection price");
   });
+  it('should change the price to the generated pieces', async () => {
+    const VeryCommonInstance = await VeryCommon.deployed();
+    const newPrice = web3.utils.toWei("0.04",'ether')
+
+    await VeryCommonInstance.changePricePiece(newPrice,{from: accounts[1]});
+    const price = await VeryCommonInstance.pricePiece.call()
+
+    assert.equal(newPrice, price, "New price expected to be current piece price");
+  });
+  it('should change the price to the generated pieces', async () => {
+    const VeryCommonInstance = await VeryCommon.deployed();
+    const balance = await web3.eth.getBalance(accounts[1])
+
+    await VeryCommonInstance.withdraw();
+    const newBalance = await web3.eth.getBalance(accounts[1])
+
+    assert.equal(newBalance > balance, 1, "New Balance expected to be higher then balance");
+  });
+
 });
