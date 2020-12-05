@@ -7,7 +7,7 @@ import { useEagerConnect, useInactiveListener } from "../hooks";
 function Connect() {
   const [activatingConnector, setActivatingConnector] = React.useState();
   const web3React = useWeb3React<Web3Provider>();
-  const { connector, account, activate, deactivate, active } = web3React;
+  const { connector } = web3React;
   React.useEffect(() => {
     if (activatingConnector && activatingConnector === connector) {
       setActivatingConnector(undefined);

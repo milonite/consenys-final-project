@@ -1,7 +1,8 @@
 import React from "react";
 import Navbar from "./components/NavBar";
-import Buy from "./pages/buy";
+import Buy from "./pages/buy_blankets";
 import MyTokens from "./pages/my_tokens";
+import Market from "./pages/market";
 import "./App.css";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
@@ -26,6 +27,7 @@ function App() {
           />
           <Route exact path="/create" component={Buy} />
           <Route exact path="/mytokens" component={MyTokens} />
+          <Route exact path="/market" component={Market} />
         </Switch>
       ) : (
         "test"
