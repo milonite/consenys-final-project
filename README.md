@@ -1,4 +1,4 @@
-# VeryCommon
+# VeryCommon, an infinite art project
 
 This is the repository for the final project of the Consensys developers certification.
 
