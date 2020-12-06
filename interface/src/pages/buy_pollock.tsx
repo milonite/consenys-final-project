@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import Blankets from "../components/P5Art/kgolid_blankets/KGolidBlankets";
+import Signs from "../components/P5Art/okazz_pollock/OkazzPollock";
 import { Button } from "@material-ui/core";
-import { useArtPieceOne } from "../hooks/useContract";
+import { useOkazzPollock } from "../hooks/useContract";
 import { useWeb3React } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
 
 function Buy() {
-  const contract = useArtPieceOne();
+  const contract = useOkazzPollock();
   const web3React = useWeb3React<Web3Provider>();
   const [entropy] = useState(Math.random());
   const { account } = web3React;
-  const [disabled, setDisabled] = useState(true);
 
   const generateArt = async () => {
     let generate;
@@ -29,15 +28,10 @@ function Buy() {
     }
   };
 
-  const enableButton = () => {
-    setDisabled(false);
-  };
-
   return (
     <div>
-      <Blankets entropy={entropy} enableButton={enableButton}></Blankets>
+      <Signs entropy={entropy}></Signs>
       <Button
-        disabled={disabled}
         style={{ marginTop: "10px" }}
         color="secondary"
         variant="outlined"

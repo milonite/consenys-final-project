@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     account: {
       border: "10px solid",
-
       borderImageSlice: 1,
       borderWidth: "0.5px",
       borderImageSource: "linear-gradient(to left, #00C853, #B2FF59)",
@@ -58,7 +57,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function ButtonAppBar() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
 
   const [activatingConnector, setActivatingConnector] = React.useState();
   const web3React = useWeb3React<Web3Provider>();
@@ -71,9 +69,7 @@ export default function ButtonAppBar() {
 
   const triedEager = useEagerConnect();
   useInactiveListener(!triedEager || !!activatingConnector);
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
-  };
+
   return (
     <div className={classes.root}>
       <AppBar position="static">

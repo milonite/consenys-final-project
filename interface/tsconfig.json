@@ -18,9 +18,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react-jsx"
   },
   "include": [
-    "src", "src/components/P5Art/lib/p5.min.js"
+    "src",
+    "src/components/P5Art/lib/p5.min.js"
   ]
 }

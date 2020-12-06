@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import ArtCard from "../components/Cards/ArtCard";
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 
 function Buy() {
-  const [entropy] = useState(Math.random());
-
   return (
     <div>
+      <Typography variant="h6">MARKET </Typography>
+
       <Grid
         container
         spacing={3}
@@ -15,15 +15,21 @@ function Buy() {
         alignItems="center"
       >
         <Grid item>
-          <ArtCard></ArtCard>
+          <ArtCard
+            to={"/createBlankets"}
+            title={"Blankets"}
+            image="https://i.ibb.co/3c9CxZT/canvas.png"
+            author="Kgolid"
+          ></ArtCard>
         </Grid>
         <Grid item>
-          <ArtCard></ArtCard>
+          <ArtCard
+            to={"/createPollock"}
+            title={"Pollock"}
+            image="https://i.ibb.co/TYN8qsn/canvas-Okazz.png"
+            author="Okazz"
+          ></ArtCard>
         </Grid>
-        <Grid item>
-          <ArtCard></ArtCard>
-        </Grid>
-        
       </Grid>
     </div>
   );

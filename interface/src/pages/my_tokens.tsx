@@ -1,48 +1,56 @@
 import React, { useState } from "react";
-import Blankets from "../components/P5Art/kgolid_blankets/KGolidBlankets";
-import { Grid } from "@material-ui/core";
-import { useArtPieceOne } from "../hooks/useContract";
+import Pollock from "../components/P5Art/okazz_pollock/OkazzPollock";
+import { Typography } from "@material-ui/core";
+import { useOkazzPollock } from "../hooks/useContract";
 import { useWeb3React } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
 
 function Buy() {
-  const contract = useArtPieceOne();
+  const contractPollock = useOkazzPollock();
   const web3React = useWeb3React<Web3Provider>();
-  const [entropies, setEntropies] = useState<any>([]);
+  const [entropiesPollock, setEntropiesPollock] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const { account } = web3React;
 
+  // TO DO: Refactor
   React.useEffect(() => {
     setLoading(true);
-    const getBalance = async () => {
-      if (contract) {
+    const getBalancePollock = async () => {
+      if (contractPollock) {
         try {
-          const balance = await contract.balanceOf(account);
+          const balance = await contractPollock.balanceOf(account);
           const tokenIds = [];
 
           for (let i = 0; i < balance.toNumber(); i++) {
-            const id = await contract.tokenOfOwnerByIndex(account, i);
+            const id = await contractPollock.tokenOfOwnerByIndex(account, i);
             tokenIds.push(id);
           }
           for (const tokenId of tokenIds) {
-            const tokenUri = await contract.tokenURI(tokenId);
-            setEntropies((entropies: []) => [...entropies, tokenUri]);
+            const tokenUri = await contractPollock.tokenURI(tokenId);
+            setEntropiesPollock((entropies: []) => [...entropies, tokenUri]);
           }
-        } catch {
-        }
+        } catch {}
         setLoading(false);
       }
     };
-    getBalance();
-  }, [contract, account]);
+    getBalancePollock();
+  }, [contractPollock, account]);
 
   return (
     <div>
-      {loading
-        ? "....loading"
-        : entropies.map((entropy: string) => {
-            return <Blankets entropy={parseFloat(entropy)}></Blankets>;
-          })}
+      <Typography variant="h6">MY TOKENS </Typography>
+
+      {loading ? (
+        "....loading"
+      ) : (
+        <>
+          <Pollock
+            entropy={parseFloat(
+              entropiesPollock[Object.values(entropiesPollock).length - 1]
+            )}
+          ></Pollock>
+        </>
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./components/NavBar";
-import Buy from "./pages/buy_blankets";
+import BuyBlankets from "./pages/buy_blankets";
+import BuyPollock from "./pages/buy_pollock";
 import MyTokens from "./pages/my_tokens";
 import Market from "./pages/market";
 import "./App.css";
@@ -22,15 +23,16 @@ function App() {
             exact
             path="/"
             render={() => {
-              return <Redirect to="/create" />;
+              return <Redirect to="/market" />;
             }}
           />
-          <Route exact path="/create" component={Buy} />
+          <Route exact path="/createPollock" component={BuyPollock} />
+          <Route exact path="/createBlankets" component={BuyBlankets} />
           <Route exact path="/mytokens" component={MyTokens} />
           <Route exact path="/market" component={Market} />
         </Switch>
       ) : (
-        "test"
+        "Please Connect to Wallet on the Rinkeby Network"
       )}
     </div>
   );

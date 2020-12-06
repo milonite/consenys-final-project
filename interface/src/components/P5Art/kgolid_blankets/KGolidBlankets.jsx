@@ -11,8 +11,8 @@ export default function art(props) {
     function init() {
       terminate = false;
       pnts = [];
-      p.randomSeed(props.entropy * 10000);
-      p.noiseSeed(props.entropy * 10000);
+      p.randomSeed(1 * 10000);
+      p.noiseSeed(1 * 10000);
       color_offset = p.random(360);
       for (var i = 0; i < n / 1.5; i++) {
         pnts.push({ x: i + 100, y: 1, px: i + 100, py: 0 });

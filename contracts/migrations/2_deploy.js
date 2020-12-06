@@ -5,5 +5,5 @@ const priceCollection = web3.utils.toWei(
   "2",'ether')
 
 module.exports = function(deployer) {
-  deployer.deploy(VeryCommon,'Artest','ATST',priceCollection,pricePiece);
+  deployer.deploy(VeryCommon,'OkazzPollock','OPLK',priceCollection,pricePiece);
 };

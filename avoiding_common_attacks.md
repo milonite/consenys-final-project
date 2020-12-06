@@ -1,0 +1,1 @@
+To avoid common attacks the contracts rely mostly on the ERC721 implementation from OpenZeppelin. Is Pausable and only the owner can perform certain actions. The non-openzeppelin methods have unit tests.

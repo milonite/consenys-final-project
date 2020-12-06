@@ -4,7 +4,6 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
-import Avatar from "@material-ui/core/Avatar";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
@@ -15,11 +14,12 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       boxShadow: "none",
-      width: "400px",
+      width: "300px",
       borderRadius: 0,
+      margin: theme.spacing(3, 1),
     },
     media: {
-      height: "30vh",
+      height: "290px",
       paddingTop: "56.25%", // 16:9
       backgroundColor: "black",
     },
@@ -33,6 +33,12 @@ const useStyles = makeStyles((theme: Theme) =>
     expandOpen: {
       transform: "rotate(180deg)",
     },
+    section1: {
+      margin: theme.spacing(0.5, 1),
+    },
+    section2: {
+      margin: theme.spacing(1, 1),
+    },
     avatar: {
       width: theme.spacing(2),
       height: theme.spacing(2),
@@ -41,62 +47,55 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard(props: any) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <Box border={1}>
-        <CardActionArea component={Link} to="/create">
-          <CardMedia
-            className={classes.media}
-            image="https://i.ibb.co/3c9CxZT/canvas.png"
-          />
+        <CardActionArea component={Link} to={props.to}>
+          <CardMedia className={classes.media} image={props.image} />
           <CardContent>
-            <Typography variant="h5" color="textSecondary" component="p">
-              Psycho
-            </Typography>
-            <Grid
-              container
-              direction="row"
-              justify="space-between"
-              alignItems="center"
-            >
-              <Grid item>
-                <Typography variant="body1" color="textSecondary" component="p">
-                  0.400Ξ ($229)
-                </Typography>
+            <div className={classes.section1}>
+              <Typography style={{ textAlign: "initial" }} variant="h5">
+                {props.title}
+              </Typography>
+              <Grid container direction="row" justify="space-between">
+                <Grid item justify="flex-start">
+                  <Typography variant="body1">Generate </Typography>
+
+                  <Typography style={{ color: "#68917b" }} variant="body2">
+                    0.02ETH
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography variant="body1">Collection </Typography>
+
+                  <Typography style={{ color: "#68917b" }} variant="body2">
+                    2.00ETH
+                  </Typography>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Typography variant="body1" color="textSecondary" component="p">
-                  4.00Ξ ($2229)
-                </Typography>
-              </Grid>
-            </Grid>
+            </div>
             <Divider variant="middle" />
-            <Grid
-              container
-              direction="row"
-              justify="space-between"
-              alignItems="center"
-            >
-              <Grid item>
-                <Avatar aria-label="recipe" className={classes.avatar}>
-                  K
-                </Avatar>
-                <Typography variant="body1" color="textSecondary" component="p">
-                  Kgolid
-                </Typography>
+            <div className={classes.section2}>
+              <Grid
+                container
+                direction="row"
+                justify="space-between"
+                alignItems="center"
+                spacing={2}
+              >
+                <Grid item>
+                  <Typography variant="body1">Owner </Typography>
+                  <Typography variant="body2">{props.author}</Typography>
+                </Grid>
+                <Grid item>
+                  <Typography variant="body1">Artist</Typography>
+                  <Typography variant="body2">{props.author}</Typography>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Avatar aria-label="recipe" className={classes.avatar}>
-                  K
-                </Avatar>
-                <Typography variant="body1" color="textSecondary" component="p">
-                  Kgolid
-                </Typography>
-              </Grid>
-            </Grid>
+            </div>
           </CardContent>
         </CardActionArea>{" "}
       </Box>
