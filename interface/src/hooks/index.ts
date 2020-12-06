@@ -15,7 +15,6 @@ export function useEagerConnect() {
 
   useEffect(() => {
     injected.isAuthorized().then((isAuthorized: boolean) => {
-      console.log(isAuthorized);
       if (isAuthorized) {
         activate(injected, undefined, true).catch(() => {
           setTried(true);
@@ -44,19 +43,16 @@ export function useInactiveListener(suppress = false) {
     const { ethereum } = windowGlobal;
     if (ethereum && ethereum.on && !active && !error && !suppress) {
       const handleChainChanged = (chainId: number): void => {
-        console.log('chainChanged', chainId);
         activate(injected);
       };
 
       const handleAccountsChanged = (accounts: string[]): void => {
-        console.log('accountsChanged', accounts);
         if (accounts.length > 0) {
           activate(injected);
         }
       };
 
       const handleNetworkChanged = (networkId: number): void => {
-        console.log('networkChanged', networkId);
         activate(injected);
       };
 

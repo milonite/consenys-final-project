@@ -29,7 +29,6 @@ function Buy() {
             setEntropies((entropies: []) => [...entropies, tokenUri]);
           }
         } catch {
-          console.log("error");
         }
         setLoading(false);
       }

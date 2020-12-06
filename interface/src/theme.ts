@@ -1,7 +1,7 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 import {eksell, foundersMono,foundersMedium} from './assets/fonts'
 
-console.log(foundersMono)
+(foundersMono)
 export const getTheme = () => {
   return (createMuiTheme as any)({
     typography: {

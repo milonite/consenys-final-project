@@ -19,7 +19,6 @@ function Buy() {
         gasLimit: 285000,
         value: "20000000000000000",
       };
-      console.log(entropy.toString());
       generate = await contract.tokenizeGeneratedArt(
         account,
         entropy.toString(),
