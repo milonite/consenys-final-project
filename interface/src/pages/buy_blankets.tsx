@@ -33,7 +33,7 @@ function Buy() {
     <div>
       <Blankets entropy={entropy}></Blankets>
       <Button color="primary" variant="contained" onClick={generateArt}>
-        CREATE TOKEN
+        CREATE
       </Button>{" "}
     </div>
   );

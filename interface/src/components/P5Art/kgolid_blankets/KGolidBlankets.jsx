@@ -11,13 +11,15 @@ export default function art(props) {
     function init() {
       terminate = false;
       pnts = [];
+      p.randomSeed(props.entropy * 10000);
+      p.noiseSeed(props.entropy * 10000);
       color_offset = p.random(360);
-      for (var i = 0; i < n; i++) {
-        pnts.push({ x: i + 200, y: 1, px: i + 200, py: 0 });
+      for (var i = 0; i < n / 1.5; i++) {
+        pnts.push({ x: i + 100, y: 1, px: i + 100, py: 0 });
       }
     }
 
-    p.createCanvas(1000, 1000).parent(canvasParentRef);
+    p.createCanvas(750, 450).parent(canvasParentRef);
     p.colorMode(p.HSB);
     p.background("#000000");
 
@@ -27,7 +29,7 @@ export default function art(props) {
   function display(p) {
     for (var i = 0; i < pnts.length; i++) {
       p.stroke(
-        (pnts[i].y * 20 + color_offset + (i / n) * 120) % 360,
+        (pnts[i].y * 0.01 + color_offset + (i / n) * 220) % 360,
         80,
         100,
         0.07
@@ -37,12 +39,11 @@ export default function art(props) {
   }
 
   function step(p) {
-    if (pnts[0].y > p.height) return true;
     for (var i = 0; i < pnts.length; i++) {
       pnts[i].px = pnts[i].x;
       pnts[i].py = pnts[i].y;
-      pnts[i].x += p.noise(i / 100, pnts[i].y / 250) * 1.9 - 1;
-      pnts[i].y++;
+      pnts[i].x += p.noise(i / 100, pnts[i].y / 300) * 2 - 1;
+      pnts[i].y = pnts[i].y + 1;
     }
     return false;
   }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ArtOne from "../components/P5Art/ArtOne/ArtOne";
+import Blankets from "../components/P5Art/kgolid_blankets/KGolidBlankets";
 import { Grid } from "@material-ui/core";
 import { useArtPieceOne } from "../hooks/useContract";
 import { useWeb3React } from "@web3-react/core";
@@ -38,17 +38,13 @@ function Buy() {
   }, [contract, account]);
 
   return (
-    <Grid container>
+    <div>
       {loading
         ? "....loading"
         : entropies.map((entropy: string) => {
-            return (
-              <Grid item>
-                <ArtOne entropy={parseFloat(entropy)}></ArtOne>
-              </Grid>
-            );
+            return <Blankets entropy={parseFloat(entropy)}></Blankets>;
           })}
-    </Grid>
+    </div>
   );
 }
 
