@@ -1,2 +1,2 @@
 export const NetworkContextName = 'Rinkeby'
-export const ArtPieceOneAddress = '0x8D506B8F8A200c0d3CceD837d33d8EF808cdedC6'
+export const ArtPieceOneAddress = '0x65FAd56a4Bbe200C63Ed26DfC05aE7677D18b2E3'

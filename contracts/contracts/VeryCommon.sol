@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.2;
 
-import "../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol";
+import "../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721Pausable.sol";
 import "../node_modules/openzeppelin-solidity/contracts/utils/Counters.sol";
 
 /// @title An infinite art generator
 /// @author Milos Costantini
 /// @notice This contract is a poc
-contract VeryCommon is ERC721 {
+contract VeryCommon is ERC721Pausable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
