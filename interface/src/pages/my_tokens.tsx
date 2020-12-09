@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Pollock from "../components/P5Art/okazz_pollock/OkazzPollock";
+import Blankets from "../components/P5Art/kgolid_blankets/KGolidBlankets";
 import { Typography } from "@material-ui/core";
 import { useOkazzPollock } from "../hooks/useContract";
 import { useWeb3React } from "@web3-react/core";
@@ -49,6 +50,7 @@ function Buy() {
               entropiesPollock[Object.values(entropiesPollock).length - 1]
             )}
           ></Pollock>
+          <Blankets entropy={parseFloat(entropiesPollock[1])}></Blankets>
         </>
       )}
     </div>

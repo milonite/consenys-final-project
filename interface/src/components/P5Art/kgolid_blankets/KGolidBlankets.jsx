@@ -55,6 +55,10 @@ export default function art(props) {
       display(p);
       terminate = step(p);
     }
+    if (p.frameCount === 550) {
+      terminate = true;
+      p.noLoop();
+    }
   };
 
   return <Sketch setup={setup} draw={draw} />;
