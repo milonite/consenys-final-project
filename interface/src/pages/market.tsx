@@ -1,5 +1,5 @@
 import React from "react";
-import ArtCard from "../components/Cards/ArtCard";
+import ArtCard from "../components/Cards/BuyArtCard";
 import { Grid, Typography } from "@material-ui/core";
 
 function Buy() {
@@ -18,7 +18,7 @@ function Buy() {
           <ArtCard
             to={"/createBlankets"}
             title={"Blankets"}
-            image="https://i.ibb.co/3c9CxZT/canvas.png"
+            imageUrl="https://i.ibb.co/3c9CxZT/canvas.png"
             author="Kgolid"
           ></ArtCard>
         </Grid>
@@ -26,7 +26,7 @@ function Buy() {
           <ArtCard
             to={"/createPollock"}
             title={"Pollock"}
-            image="https://i.ibb.co/TYN8qsn/canvas-Okazz.png"
+            imageUrl="https://i.ibb.co/TYN8qsn/canvas-Okazz.png"
             author="Okazz"
           ></ArtCard>
         </Grid>

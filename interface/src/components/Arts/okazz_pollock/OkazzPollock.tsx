@@ -1,12 +1,12 @@
 import React from "react";
 import Sketch from "react-p5";
 
-export default function art(props) {
+export default function art(props: any) {
   let colors = ["#ed1c24", "#fdfffc", "#235789", "#f1d302", "#020100"];
 
-  const setup = (p, canvasParentRef) => {
+  const setup = (p: any, canvasParentRef: any) => {
     p.randomSeed(props.entropy * 1000);
-    p.createCanvas(600, 600).parent(canvasParentRef);
+    p.createCanvas(450, 450).parent(canvasParentRef);
     p.background(p.random(colors));
 
     for (let i = 0; i < 100; i++) {
@@ -25,7 +25,7 @@ export default function art(props) {
       p.circle(x, y, s);
     }
 
-    function splash(x, y, s) {
+    function splash(x: number, y: number, s: number) {
       let col = p.random(colors);
       let cc = p.int(p.random(150, 2000));
       p.push();
@@ -54,7 +54,7 @@ export default function art(props) {
       p.pop();
     }
 
-    function myLine(x1, y1, x2, y2) {
+    function myLine(x1: number, y1: number, x2: number, y2: number) {
       let w = p.random(3, 20);
       p.beginShape();
       p.vertex(x1, y1);
@@ -64,7 +64,5 @@ export default function art(props) {
     }
   };
 
-  const draw = (p) => {};
-
-  return <Sketch setup={setup} draw={draw} />;
+  return <Sketch setup={setup} />;
 }

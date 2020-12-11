@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "./components/NavBar";
 import BuyBlankets from "./pages/buy_blankets";
 import BuyPollock from "./pages/buy_pollock";
-import MyTokens from "./pages/my_tokens";
+import MyTokens from "./pages/my_tokens_list";
 import Market from "./pages/market";
 import "./App.css";
 import { Route, Switch, Redirect } from "react-router-dom";

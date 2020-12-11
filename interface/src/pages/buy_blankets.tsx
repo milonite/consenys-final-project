@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import Blankets from "../components/P5Art/kgolid_blankets/KGolidBlankets";
+import Blankets from "../components/Arts/kgolid_blankets/KGolidBlankets";
 import { Button } from "@material-ui/core";
 import { useArtPieceOne } from "../hooks/useContract";
 import { useWeb3React } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
+import Sparkles from "../components/Animations/Sparkle";
 
 function Buy() {
   const contract = useArtPieceOne();
@@ -36,15 +37,17 @@ function Buy() {
   return (
     <div>
       <Blankets entropy={entropy} enableButton={enableButton}></Blankets>
-      <Button
-        disabled={disabled}
-        style={{ marginTop: "10px" }}
-        color="secondary"
-        variant="outlined"
-        onClick={generateArt}
-      >
-        CREATE
-      </Button>{" "}
+      <Sparkles>
+        <Button
+          disabled={disabled}
+          style={{ marginTop: "10px" }}
+          color="secondary"
+          variant="outlined"
+          onClick={generateArt}
+        >
+          CREATE
+        </Button>
+      </Sparkles>
     </div>
   );
 }

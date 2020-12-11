@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import Signs from "../components/P5Art/okazz_pollock/OkazzPollock";
+import Signs from "../components/Arts/okazz_pollock/OkazzPollock";
 import { Button } from "@material-ui/core";
 import { useOkazzPollock } from "../hooks/useContract";
 import { useWeb3React } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
+import Sparkles from "../components/Animations/Sparkle";
 
 function Buy() {
   const contract = useOkazzPollock();
   const web3React = useWeb3React<Web3Provider>();
-  const [entropy] = useState(Math.random());
+  const [entropy] = useState<number>(Math.random());
   const { account } = web3React;
 
   const generateArt = async () => {
@@ -31,14 +32,16 @@ function Buy() {
   return (
     <div>
       <Signs entropy={entropy}></Signs>
-      <Button
-        style={{ marginTop: "10px" }}
-        color="secondary"
-        variant="outlined"
-        onClick={generateArt}
-      >
-        CREATE
-      </Button>{" "}
+      <Sparkles>
+        <Button
+          style={{ marginTop: "10px" }}
+          color="secondary"
+          variant="outlined"
+          onClick={generateArt}
+        >
+          CREATE
+        </Button>
+      </Sparkles>
     </div>
   );
 }

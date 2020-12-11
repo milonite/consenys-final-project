@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Pollock from "../components/P5Art/okazz_pollock/OkazzPollock";
-import Blankets from "../components/P5Art/kgolid_blankets/KGolidBlankets";
+import Pollock from "../components/Arts/okazz_pollock/OkazzPollock";
+import Blankets from "../components/Arts/kgolid_blankets/KGolidBlankets";
 import { Typography } from "@material-ui/core";
 import { useOkazzPollock } from "../hooks/useContract";
 import { useWeb3React } from "@web3-react/core";
@@ -24,13 +24,16 @@ function Buy() {
 
           for (let i = 0; i < balance.toNumber(); i++) {
             const id = await contractPollock.tokenOfOwnerByIndex(account, i);
+            console.log(id);
             tokenIds.push(id);
           }
           for (const tokenId of tokenIds) {
             const tokenUri = await contractPollock.tokenURI(tokenId);
             setEntropiesPollock((entropies: []) => [...entropies, tokenUri]);
           }
-        } catch {}
+        } catch {
+          console.log("error");
+        }
         setLoading(false);
       }
     };

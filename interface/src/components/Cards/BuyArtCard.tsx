@@ -54,7 +54,7 @@ export default function RecipeReviewCard(props: any) {
     <Card className={classes.root}>
       <Box border={1}>
         <CardActionArea component={Link} to={props.to}>
-          <CardMedia className={classes.media} image={props.image} />
+          <CardMedia className={classes.media} image={props.imageUrl} />
           <CardContent>
             <div className={classes.section1}>
               <Typography style={{ textAlign: "initial" }} variant="h5">

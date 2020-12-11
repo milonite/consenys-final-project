@@ -1,32 +1,32 @@
 import React from "react";
 import Sketch from "react-p5";
 
-export default function art(props) {
-  let pnts;
+export default function art(props: any) {
+  let pnts: any[];
   let n = 1000;
-  let terminate;
-  let color_offset;
+  let terminate: boolean;
+  let color_offset: number;
 
-  const setup = (p, canvasParentRef) => {
+  const setup = (p: any, canvasParentRef: any) => {
     function init() {
       terminate = false;
       pnts = [];
-      p.randomSeed(1 * 10000);
-      p.noiseSeed(1 * 10000);
+      p.randomSeed(props.entropy * 10000);
+      p.noiseSeed(props.entropy * 10000);
       color_offset = p.random(360);
       for (var i = 0; i < n / 1.5; i++) {
         pnts.push({ x: i + 100, y: 1, px: i + 100, py: 0 });
       }
     }
 
-    p.createCanvas(750, 450).parent(canvasParentRef);
+    p.createCanvas(450, 450).parent(canvasParentRef);
     p.colorMode(p.HSB);
     p.background("#000000");
 
     init();
   };
 
-  function display(p) {
+  function display(p: any) {
     for (var i = 0; i < pnts.length; i++) {
       p.stroke(
         (pnts[i].y * 0.01 + color_offset + (i / n) * 220) % 360,
@@ -38,7 +38,7 @@ export default function art(props) {
     }
   }
 
-  function step(p) {
+  function step(p: any) {
     for (var i = 0; i < pnts.length; i++) {
       pnts[i].px = pnts[i].x;
       pnts[i].py = pnts[i].y;
@@ -48,7 +48,7 @@ export default function art(props) {
     return false;
   }
 
-  const draw = (p) => {
+  const draw = (p: any) => {
     if (!terminate) {
       display(p);
       step(p);
