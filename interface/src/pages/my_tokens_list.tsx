@@ -5,11 +5,21 @@ import { useOkazzPollock, useArtPieceOne } from "../hooks/useContract";
 import { useWeb3React } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
 import OverviewCard from "../components/Cards/OverviewCard";
+import Dialog from "../components/Dialogs/Dialog";
+
+interface selected {
+  art: string | null;
+  tokenId: string | null;
+}
 
 function TokenList() {
   const contractPollock = useOkazzPollock();
   const contractBlankets = useArtPieceOne();
   const web3React = useWeb3React<Web3Provider>();
+  const [selected, setSelected] = useState<selected>({
+    art: null,
+    tokenId: null,
+  });
   const [loading, setLoading] = useState(false);
   const [tokenIdsPollock, setTokenIdsPollock] = useState([]);
   const [tokenIdsBlankets, setTokenIdsBlankets] = useState([]);
@@ -55,8 +65,27 @@ function TokenList() {
     getBalanceBlanket();
   }, [contractPollock, account]);
 
+  const handleSelect = (art: string, tokenId: string) => {
+    setSelected({
+      art: art,
+      tokenId: tokenId,
+    });
+  };
+
+  const handleClose = () => {
+    setSelected({
+      art: null,
+      tokenId: null,
+    });
+  };
+
   return (
     <div>
+      <Dialog
+        handleClose={handleClose}
+        open={selected.art ? true : false}
+        selected={selected}
+      ></Dialog>
       <Typography variant="h6"> MY TOKENS </Typography>
       {loading ? (
         "....loading"
@@ -73,7 +102,9 @@ function TokenList() {
               <Grid item>
                 <OverviewCard
                   title={"Pollock"}
+                  author={"Okazz"}
                   tokenId={el}
+                  handleSelect={handleSelect}
                   imageUrl={"https://i.ibb.co/TYN8qsn/canvas-Okazz.png"}
                 ></OverviewCard>
               </Grid>
@@ -82,7 +113,9 @@ function TokenList() {
               <Grid item>
                 <OverviewCard
                   title={"Blankets"}
+                  author={"Kgolid"}
                   tokenId={el}
+                  handleSelect={handleSelect}
                   imageUrl="https://i.ibb.co/3c9CxZT/canvas.png"
                 ></OverviewCard>
               </Grid>

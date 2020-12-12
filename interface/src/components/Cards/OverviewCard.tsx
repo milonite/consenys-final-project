@@ -47,22 +47,34 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-interface IOverviewCard {}
+interface IOverviewCard {
+  imageUrl: string;
+  author: string;
+  tokenId: string;
+  title: string;
+  handleSelect: (art: string, tokenId: string) => void;
+}
 
-export default function RecipeReviewCard(props: any) {
+export default function RecipeReviewCard({
+  imageUrl,
+  author,
+  tokenId,
+  title,
+  handleSelect,
+}: IOverviewCard) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} onClick={() => handleSelect(title, tokenId)}>
       <Box border={1}>
         <CardActionArea>
-          <CardMedia className={classes.media} image={props.imageUrl}>
+          <CardMedia className={classes.media} image={imageUrl}>
             ciao
           </CardMedia>
           <CardContent>
             <div className={classes.section1}>
               <Typography style={{ textAlign: "initial" }} variant="h5">
-                Number #{props.tokenId}
+                Number #{tokenId}
               </Typography>
               <Grid container direction="row" justify="space-between">
                 <Typography variant="body1">Click to see</Typography>
@@ -79,11 +91,11 @@ export default function RecipeReviewCard(props: any) {
               >
                 <Grid item>
                   <Typography variant="body1">Owner </Typography>
-                  <Typography variant="body2">{props.author}</Typography>
+                  <Typography variant="body2">{author}</Typography>
                 </Grid>
                 <Grid item>
                   <Typography variant="body1">Artist</Typography>
-                  <Typography variant="body2">{props.author}</Typography>
+                  <Typography variant="body2">{author}</Typography>
                 </Grid>
               </Grid>
             </div>
