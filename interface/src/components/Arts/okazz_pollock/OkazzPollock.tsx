@@ -1,4 +1,3 @@
-import React from "react";
 import Sketch from "react-p5";
 
 export default function art(props: any) {

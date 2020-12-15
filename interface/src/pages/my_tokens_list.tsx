@@ -6,6 +6,7 @@ import { useWeb3React } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
 import OverviewCard from "../components/Cards/OverviewCard";
 import Dialog from "../components/Dialogs/Dialog";
+import { LinearIndeterminate as LoadingBar } from "../components/Loading";
 
 interface selected {
   art: string | null;
@@ -87,8 +88,9 @@ function TokenList() {
         selected={selected}
       ></Dialog>
       <Typography variant="h6"> MY TOKENS </Typography>
+
       {loading ? (
-        "....loading"
+        <LoadingBar></LoadingBar>
       ) : (
         <>
           <Grid

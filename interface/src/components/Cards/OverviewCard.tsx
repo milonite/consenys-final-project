@@ -8,17 +8,24 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
+import Sparkles from "../../components/Animations/Sparkle";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       boxShadow: "none",
-      width: "300px",
+      width: "250px",
       borderRadius: 0,
       margin: theme.spacing(3, 1),
     },
+    text: {
+      backgroundImage:
+        "linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red)",
+      color: "transparent",
+      WebkitBackgroundClip: "text",
+    },
     media: {
-      height: "290px",
+      height: "200px",
       paddingTop: "56.25%", // 16:9
       backgroundColor: "black",
       filter: "blur(2px)",
@@ -68,16 +75,18 @@ export default function RecipeReviewCard({
     <Card className={classes.root} onClick={() => handleSelect(title, tokenId)}>
       <Box border={1}>
         <CardActionArea>
-          <CardMedia className={classes.media} image={imageUrl}>
-            ciao
-          </CardMedia>
+          <CardMedia className={classes.media} image={imageUrl}></CardMedia>
           <CardContent>
             <div className={classes.section1}>
               <Typography style={{ textAlign: "initial" }} variant="h5">
-                Number #{tokenId}
+                {title} #{tokenId}
               </Typography>
               <Grid container direction="row" justify="space-between">
-                <Typography variant="body1">Click to see</Typography>
+                <Sparkles>
+                  <Typography className={classes.text} variant="body1">
+                    Click to see
+                  </Typography>
+                </Sparkles>
               </Grid>
             </div>
             <Divider variant="middle" />

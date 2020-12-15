@@ -51,54 +51,56 @@ export default function RecipeReviewCard(props: any) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
-      <Box border={1}>
-        <CardActionArea component={Link} to={props.to}>
-          <CardMedia className={classes.media} image={props.imageUrl} />
-          <CardContent>
-            <div className={classes.section1}>
-              <Typography style={{ textAlign: "initial" }} variant="h5">
-                {props.title}
-              </Typography>
-              <Grid container direction="row" justify="space-between">
-                <Grid item justify="flex-start">
-                  <Typography variant="body1">Generate </Typography>
+    <>
+      <Card className={classes.root}>
+        <Box border={1}>
+          <CardActionArea component={Link} to={props.to}>
+            <CardMedia className={classes.media} image={props.imageUrl} />
+            <CardContent>
+              <div className={classes.section1}>
+                <Typography style={{ textAlign: "initial" }} variant="h5">
+                  {props.title}
+                </Typography>
+                <Grid container direction="row" justify="space-between">
+                  <Grid item justify="flex-start">
+                    <Typography variant="body1">Generate </Typography>
 
-                  <Typography style={{ color: "#68917b" }} variant="body2">
-                    0.02ETH
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography variant="body1">Collection </Typography>
+                    <Typography style={{ color: "#68917b" }} variant="body2">
+                      0.02ETH
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="body1">Collection </Typography>
 
-                  <Typography style={{ color: "#68917b" }} variant="body2">
-                    2.00ETH
-                  </Typography>
+                    <Typography style={{ color: "#68917b" }} variant="body2">
+                      2.00ETH
+                    </Typography>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </div>
-            <Divider variant="middle" />
-            <div className={classes.section2}>
-              <Grid
-                container
-                direction="row"
-                justify="space-between"
-                alignItems="center"
-                spacing={2}
-              >
-                <Grid item>
-                  <Typography variant="body1">Owner </Typography>
-                  <Typography variant="body2">{props.author}</Typography>
+              </div>
+              <Divider variant="middle" />
+              <div className={classes.section2}>
+                <Grid
+                  container
+                  direction="row"
+                  justify="space-between"
+                  alignItems="center"
+                  spacing={2}
+                >
+                  <Grid item>
+                    <Typography variant="body1">Owner </Typography>
+                    <Typography variant="body2">{props.author}</Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="body1">Artist</Typography>
+                    <Typography variant="body2">{props.author}</Typography>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Typography variant="body1">Artist</Typography>
-                  <Typography variant="body2">{props.author}</Typography>
-                </Grid>
-              </Grid>
-            </div>
-          </CardContent>
-        </CardActionArea>{" "}
-      </Box>
-    </Card>
+              </div>
+            </CardContent>
+          </CardActionArea>
+        </Box>
+      </Card>
+    </>
   );
 }

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Signs from "../components/Arts/okazz_pollock/OkazzPollock";
 import { Button } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { useOkazzPollock } from "../hooks/useContract";
 import { useWeb3React } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
@@ -10,38 +11,50 @@ function Buy() {
   const contract = useOkazzPollock();
   const web3React = useWeb3React<Web3Provider>();
   const [entropy] = useState<number>(Math.random());
-  const { account } = web3React;
+  const { account, chainId } = web3React;
+  const [error, setError] = useState(false);
 
   const generateArt = async () => {
-    let generate;
-    if (contract) {
-      var options = {
-        gasPrice: 10000000000,
-        gasLimit: 285000,
-        value: "20000000000000000",
-      };
-      generate = await contract.tokenizeGeneratedArt(
-        account,
-        entropy.toString(),
-        options
-      );
-      await generate.wait();
-    }
+    if (chainId === 4) {
+      let generate;
+      if (contract) {
+        var options = {
+          gasPrice: 10000000000,
+          gasLimit: 285000,
+          value: "20000000000000000",
+        };
+        generate = await contract.tokenizeGeneratedArt(
+          account,
+          entropy.toString(),
+          options
+        );
+        await generate.wait();
+      }
+    } else setError(true);
   };
+
+  useEffect(() => {
+    chainId === 4 && setError(false);
+  }, [chainId]);
 
   return (
     <div>
-      <Signs entropy={entropy}></Signs>
-      <Sparkles>
-        <Button
-          style={{ marginTop: "10px" }}
-          color="secondary"
-          variant="outlined"
-          onClick={generateArt}
-        >
-          CREATE
-        </Button>
-      </Sparkles>
+      <>
+        <Signs entropy={entropy}></Signs>
+        <Sparkles>
+          <Button
+            style={{ marginTop: "10px" }}
+            color="secondary"
+            variant="outlined"
+            onClick={generateArt}
+          >
+            CREATE
+          </Button>
+        </Sparkles>
+        {error ? (
+          <Typography>Please connect to the Rinkeby Network</Typography>
+        ) : null}
+      </>
     </div>
   );
 }

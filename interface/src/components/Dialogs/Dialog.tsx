@@ -12,6 +12,18 @@ export interface SimpleDialogProps {
   handleClose: () => void;
 }
 
+const getArt = (selected: any) => {
+  try {
+    if (selected.art === "Pollock") {
+      return <Pollock entropy={selected.tokenId}></Pollock>;
+    } else {
+      return <Blankets entropy={selected.tokenId}></Blankets>;
+    }
+  } catch (error) {
+    return <></>;
+  }
+};
+
 function SimpleDialog({ open, selected, handleClose }: SimpleDialogProps) {
   return (
     <Dialog
@@ -19,11 +31,7 @@ function SimpleDialog({ open, selected, handleClose }: SimpleDialogProps) {
       aria-labelledby="simple-dialog-title"
       open={open}
     >
-      {selected.art === "Pollock" ? (
-        <Pollock entropy={selected.tokenId}></Pollock>
-      ) : (
-        <Blankets entropy={selected.tokenId}></Blankets>
-      )}
+      {getArt(selected)}
     </Dialog>
   );
 }
