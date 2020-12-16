@@ -1,4 +1,3 @@
-import React from "react";
 import Sketch from "react-p5";
 
 export default function art(props: any) {
@@ -19,7 +18,7 @@ export default function art(props: any) {
       }
     }
 
-    p.createCanvas(450, 450).parent(canvasParentRef);
+    p.createCanvas(700, 450).parent(canvasParentRef);
     p.colorMode(p.HSB);
     p.background("#000000");
 
@@ -49,15 +48,19 @@ export default function art(props: any) {
   }
 
   const draw = (p: any) => {
-    if (!terminate) {
-      display(p);
-      step(p);
-      display(p);
-      terminate = step(p);
-    }
-    if (p.frameCount === 550) {
-      terminate = true;
-      p.noLoop();
+    try {
+      if (!terminate) {
+        display(p);
+        step(p);
+        display(p);
+        terminate = step(p);
+      }
+      if (p.frameCount === 550) {
+        terminate = true;
+        p.noLoop();
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 

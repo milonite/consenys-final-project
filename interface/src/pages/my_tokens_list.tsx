@@ -6,7 +6,7 @@ import { useWeb3React } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
 import OverviewCard from "../components/Cards/OverviewCard";
 import Dialog from "../components/Dialogs/Dialog";
-import { LinearIndeterminate as LoadingBar } from "../components/Loading";
+import LoadingBar from "../components/Loading/LoadingBar";
 
 interface selected {
   art: string | null;
@@ -64,7 +64,7 @@ function TokenList() {
     };
     getBalancePollock();
     getBalanceBlanket();
-  }, [contractPollock, account]);
+  }, [contractPollock, account, contractBlankets]);
 
   const handleSelect = (art: string, tokenId: string) => {
     setSelected({

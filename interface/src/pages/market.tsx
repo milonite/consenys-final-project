@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import ArtCard from "../components/Cards/BuyArtCard";
 import { Grid, Typography } from "@material-ui/core";
 
 function Buy() {
-  const [loading, setloading] = useState(false);
-
   return (
     <div>
       <Typography variant="h6">MARKET </Typography>
-
       <Grid
         container
         spacing={3}

@@ -7,7 +7,9 @@ export default function art(props: any) {
     p.randomSeed(props.entropy * 1000);
     p.createCanvas(450, 450).parent(canvasParentRef);
     p.background(p.random(colors));
+  };
 
+  const draw = (p: any) => {
     for (let i = 0; i < 100; i++) {
       let x = p.randomGaussian(0.5, 0.18) * p.width;
       let y = p.randomGaussian(0.5, 0.18) * p.height;
@@ -22,8 +24,10 @@ export default function art(props: any) {
       p.fill(p.random(colors));
       p.noStroke();
       p.circle(x, y, s);
+      if (i === 399) {
+        console.log("40000");
+      }
     }
-
     function splash(x: number, y: number, s: number) {
       let col = p.random(colors);
       let cc = p.int(p.random(150, 2000));
@@ -52,7 +56,6 @@ export default function art(props: any) {
       }
       p.pop();
     }
-
     function myLine(x1: number, y1: number, x2: number, y2: number) {
       let w = p.random(3, 20);
       p.beginShape();
@@ -61,7 +64,8 @@ export default function art(props: any) {
       p.bezierVertex(x2 + w * 0.5, y2 - w * 0.1, x2, y2 - w * 0.5, x1, y1);
       p.endShape();
     }
+    p.noLoop();
   };
 
-  return <Sketch setup={setup} />;
+  return <Sketch setup={setup} draw={draw} />;
 }
