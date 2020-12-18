@@ -2,7 +2,6 @@ import React from "react";
 import Dialog from "@material-ui/core/Dialog";
 import Pollock from "../Arts/okazz_pollock/OkazzPollock";
 import Blankets from "../Arts/kgolid_blankets/KGolidBlankets";
-
 export interface SimpleDialogProps {
   open: boolean;
   selected: {
@@ -20,7 +19,7 @@ const getArt = (selected: any) => {
       return <Blankets entropy={selected.tokenId}></Blankets>;
     }
   } catch (error) {
-    return <></>;
+    return null;
   }
 };
 
@@ -30,6 +29,7 @@ function SimpleDialog({ open, selected, handleClose }: SimpleDialogProps) {
       onClose={handleClose}
       aria-labelledby="simple-dialog-title"
       open={open}
+      style={{ overflowY: "hidden" }}
     >
       {getArt(selected)}
     </Dialog>

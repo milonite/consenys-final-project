@@ -24,7 +24,7 @@ function TokenList() {
   const [loading, setLoading] = useState(false);
   const [tokenIdsPollock, setTokenIdsPollock] = useState([]);
   const [tokenIdsBlankets, setTokenIdsBlankets] = useState([]);
-  const { account } = web3React;
+  const { account, active, chainId } = web3React;
 
   React.useEffect(() => {
     setLoading(true);
@@ -89,42 +89,46 @@ function TokenList() {
       ></Dialog>
       <Typography variant="h6"> MY TOKENS </Typography>
 
-      {loading ? (
-        <LoadingBar></LoadingBar>
-      ) : (
-        <>
-          <Grid
-            container
-            spacing={3}
-            direction="row"
-            justify="center"
-            alignItems="center"
-          >
-            {tokenIdsPollock.map((el) => (
-              <Grid item>
-                <OverviewCard
-                  title={"Pollock"}
-                  author={"Okazz"}
-                  tokenId={el}
-                  handleSelect={handleSelect}
-                  imageUrl={"https://i.ibb.co/TYN8qsn/canvas-Okazz.png"}
-                ></OverviewCard>
-              </Grid>
-            ))}
-            {tokenIdsBlankets.map((el) => (
-              <Grid item>
-                <OverviewCard
-                  title={"Blankets"}
-                  author={"Kgolid"}
-                  tokenId={el}
-                  handleSelect={handleSelect}
-                  imageUrl="https://i.ibb.co/3c9CxZT/canvas.png"
-                ></OverviewCard>
-              </Grid>
-            ))}
-          </Grid>
-        </>
-      )}
+      {active === false || chainId !== 4
+        ? "Please connect to the Rinkeby Network"
+        : [
+            loading ? (
+              <LoadingBar></LoadingBar>
+            ) : (
+              <>
+                <Grid
+                  container
+                  spacing={3}
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                >
+                  {tokenIdsPollock.map((el) => (
+                    <Grid item>
+                      <OverviewCard
+                        title={"Pollock"}
+                        author={"Okazz"}
+                        tokenId={el}
+                        handleSelect={handleSelect}
+                        imageUrl={"https://i.ibb.co/TYN8qsn/canvas-Okazz.png"}
+                      ></OverviewCard>
+                    </Grid>
+                  ))}
+                  {tokenIdsBlankets.map((el) => (
+                    <Grid item>
+                      <OverviewCard
+                        title={"Blankets"}
+                        author={"Kgolid"}
+                        tokenId={el}
+                        handleSelect={handleSelect}
+                        imageUrl="https://i.ibb.co/3c9CxZT/canvas.png"
+                      ></OverviewCard>
+                    </Grid>
+                  ))}
+                </Grid>
+              </>
+            ),
+          ]}
     </div>
   );
 }

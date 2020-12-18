@@ -55,9 +55,10 @@ export default function art(props: any) {
         display(p);
         terminate = step(p);
       }
-      if (p.frameCount === 550) {
+      if (p.frameCount === 300) {
         terminate = true;
         p.noLoop();
+        props.enableButton();
       }
     } catch (error) {
       console.log(error);

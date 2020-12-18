@@ -17,19 +17,18 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       flexGrow: 1,
       backgroundColor: "white",
-      padding: "15px",
+      padding: "12px",
     },
     grow: {
       flexGrow: 1,
     },
-    tabs: {
-      width: "100%",
-    },
-    tab: {
-      marginLeft: "50px",
+    button: {
+      outline: "none",
+      backgroundColor: "transparent",
+      textDecoration: "none",
       textTransform: "none",
-      color: "black",
     },
+
     link: {
       textDecoration: "none",
       color: "black",
@@ -86,10 +85,14 @@ export default function ButtonAppBar() {
             <Grid></Grid>
             <Grid>
               <Link className={classes.link} to="/market">
-                <Button color="inherit">MARKET</Button>
+                <Button className={classes.button} color="inherit">
+                  Market
+                </Button>
               </Link>
               <Link className={classes.link} to="/mytokens">
-                <Button color="inherit">MY TOKENS</Button>
+                <Button className={classes.button} color="inherit">
+                  My Tokens
+                </Button>
               </Link>
 
               {active === false ? (

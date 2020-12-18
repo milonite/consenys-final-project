@@ -11,6 +11,7 @@ function Buy() {
   const contract = useOkazzPollock();
   const web3React = useWeb3React<Web3Provider>();
   const [entropy] = useState<number>(Math.random());
+  const [loading, setLoading] = useState(true);
   const { account, chainId } = web3React;
   const [error, setError] = useState(false);
 
@@ -40,7 +41,8 @@ function Buy() {
   return (
     <div>
       <>
-        <Signs entropy={entropy}></Signs>
+        {loading ? "Generating..." : null}
+        <Signs entropy={entropy} setLoading={setLoading}></Signs>
         <Sparkles>
           <Button
             style={{ marginTop: "10px" }}

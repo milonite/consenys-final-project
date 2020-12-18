@@ -37,7 +37,7 @@ function Buy() {
   return (
     <div>
       <Blankets entropy={entropy} enableButton={enableButton}></Blankets>
-      <Sparkles>
+      {disabled ? (
         <Button
           disabled={disabled}
           style={{ marginTop: "10px" }}
@@ -47,7 +47,19 @@ function Buy() {
         >
           CREATE
         </Button>
-      </Sparkles>
+      ) : (
+        <Sparkles>
+          <Button
+            disabled={disabled}
+            style={{ marginTop: "10px" }}
+            color="secondary"
+            variant="outlined"
+            onClick={generateArt}
+          >
+            CREATE
+          </Button>
+        </Sparkles>
+      )}
     </div>
   );
 }

@@ -25,7 +25,7 @@ export default function art(props: any) {
       p.noStroke();
       p.circle(x, y, s);
       if (i === 399) {
-        console.log("40000");
+        props.setLoading && props.setLoading(false);
       }
     }
     function splash(x: number, y: number, s: number) {
@@ -67,5 +67,5 @@ export default function art(props: any) {
     p.noLoop();
   };
 
-  return <Sketch setup={setup} draw={draw} />;
+  return <Sketch setup={setup} draw={draw} style={{ marginBottom: "-5px" }} />;
 }

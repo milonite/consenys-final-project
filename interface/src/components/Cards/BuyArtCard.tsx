@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
       height: theme.spacing(2),
       backgroundColor: "black",
     },
+    artist: { color: "#9b9b9b" },
   })
 );
 
@@ -88,11 +89,15 @@ export default function RecipeReviewCard(props: any) {
                   spacing={2}
                 >
                   <Grid item>
-                    <Typography variant="body1">Owner </Typography>
+                    <Typography className={classes.artist} variant="body2">
+                      Owner
+                    </Typography>
                     <Typography variant="body2">{props.author}</Typography>
                   </Grid>
                   <Grid item>
-                    <Typography variant="body1">Artist</Typography>
+                    <Typography className={classes.artist} variant="body2">
+                      Artist
+                    </Typography>
                     <Typography variant="body2">{props.author}</Typography>
                   </Grid>
                 </Grid>
