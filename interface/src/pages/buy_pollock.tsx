@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Signs from "../components/Arts/okazz_pollock/OkazzPollock";
-import { Button } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { useOkazzPollock } from "../hooks/useContract";
 import { useWeb3React } from "@web3-react/core";
@@ -39,8 +39,9 @@ function Buy() {
   }, [chainId]);
 
   return (
-    <div>
-      <>
+    <Grid container direction="row" justify="center" alignItems="center">
+      <Grid item> </Grid>
+      <Grid item>
         {loading ? "Generating..." : null}
         <Signs entropy={entropy} setLoading={setLoading}></Signs>
         <Sparkles>
@@ -56,8 +57,8 @@ function Buy() {
         {error ? (
           <Typography>Please connect to the Rinkeby Network</Typography>
         ) : null}
-      </>
-    </div>
+      </Grid>
+    </Grid>
   );
 }
 
