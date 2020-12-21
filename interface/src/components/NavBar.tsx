@@ -80,7 +80,9 @@ export default function ButtonAppBar() {
             alignItems="center"
           >
             <Grid>
-              <Typography variant="h6">VeryCommon</Typography>
+              <Link className={classes.link} to="/">
+                <Typography variant="h6">VeryCommon</Typography>
+              </Link>
             </Grid>
             <Grid></Grid>
             <Grid>
