@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       boxShadow: "none",
-      width: "330px",
+      width: "300px",
       borderRadius: 0,
       margin: theme.spacing(3, 1),
     },
@@ -62,22 +62,6 @@ export default function RecipeReviewCard(props: any) {
                 <Typography style={{ textAlign: "initial" }} variant="h5">
                   {props.title}
                 </Typography>
-                <Grid container direction="row" justify="space-between">
-                  <Grid item justify="flex-start">
-                    <Typography variant="body1">Generate </Typography>
-
-                    <Typography style={{ color: "#68917b" }} variant="body2">
-                      0.02ETH
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="body1">Collection </Typography>
-
-                    <Typography style={{ color: "#68917b" }} variant="body2">
-                      2.00ETH
-                    </Typography>
-                  </Grid>
-                </Grid>
               </div>
               <Divider variant="middle" />
               <div className={classes.section2}>
@@ -88,12 +72,6 @@ export default function RecipeReviewCard(props: any) {
                   alignItems="center"
                   spacing={2}
                 >
-                  <Grid item>
-                    <Typography className={classes.artist} variant="body2">
-                      Owner
-                    </Typography>
-                    <Typography variant="body2">{props.owner}</Typography>
-                  </Grid>
                   <Grid item>
                     <Typography className={classes.artist} variant="body2">
                       Artist
@@ -102,26 +80,16 @@ export default function RecipeReviewCard(props: any) {
                   </Grid>
                 </Grid>
               </div>
-              <Divider variant="middle" />
-              <div className={classes.section2}>
-                <Grid
-                  container
-                  direction="row"
-                  justify="space-between"
-                  alignItems="center"
-                  spacing={2}
-                >
-                  <Grid item>
-                    <Typography className={classes.artist} variant="body1">
-                      Generated Pieces:
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    {" "}
-                    <Typography variant="body1">{props.total}</Typography>
-                  </Grid>
+              <Grid container direction="row" justify="space-between">
+                <Grid item justify="flex-start">
+                  <Typography variant="body1">Generated Pieces</Typography>
                 </Grid>
-              </div>
+                <Grid item>
+                  <Typography style={{ color: "#68917b" }} variant="body2">
+                    {props.total}
+                  </Typography>
+                </Grid>
+              </Grid>
             </CardContent>
           </CardActionArea>
         </Box>
