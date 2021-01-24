@@ -38,7 +38,7 @@ function TokenList() {
   React.useEffect(() => {
     setLoading(true);
     const getBalancePollock = async () => {
-      if (contractPollock) {
+      if (contractPollock && chainId === 4) {
         try {
           const balance = await contractPollock.balanceOf(account);
           for (let i = 0; i < balance.toNumber(); i++) {
@@ -55,7 +55,7 @@ function TokenList() {
       }
     };
     const getBalanceBlanket = async () => {
-      if (contractBlankets) {
+      if (contractBlankets && chainId === 4) {
         try {
           const balance = await contractBlankets.balanceOf(account);
           for (let i = 0; i < balance.toNumber(); i++) {

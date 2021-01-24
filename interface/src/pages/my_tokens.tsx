@@ -11,13 +11,13 @@ function Buy() {
   const web3React = useWeb3React<Web3Provider>();
   const [entropiesPollock, setEntropiesPollock] = useState<any>([]);
   const [loading, setLoading] = useState(false);
-  const { account } = web3React;
+  const { account, chainId } = web3React;
 
   // TO DO: Refactor
   React.useEffect(() => {
     setLoading(true);
     const getBalancePollock = async () => {
-      if (contractPollock) {
+      if (contractPollock && chainId === 4) {
         try {
           const balance = await contractPollock.balanceOf(account);
           const tokenIds = [];

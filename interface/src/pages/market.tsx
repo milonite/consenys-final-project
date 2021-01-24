@@ -18,7 +18,7 @@ function Buy() {
   const { chainId } = web3React;
 
   React.useEffect(() => {
-    if (contractPollock) {
+    if (contractPollock && chainId === 4) {
       const getTotal = async () => {
         const total = await contractPollock.totalSupply();
         setTotalPollock(total.toNumber());
@@ -30,7 +30,7 @@ function Buy() {
   }, [chainId]);
 
   React.useEffect(() => {
-    if (contractBlankets) {
+    if (contractBlankets && chainId === 4) {
       const getTotal = async () => {
         const total = await contractBlankets.totalSupply();
         setTotalBlankets(total.toNumber());

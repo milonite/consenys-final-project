@@ -21,7 +21,7 @@ function Landing() {
         </Typography>
       </Grid>
 
-      <Typography variant="h2" style={{ marginRight: "-230px" }}>
+      <Typography variant="h2" style={{ marginLeft: "24%" }}>
         Digital Artworks
       </Typography>
       <Link
