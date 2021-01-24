@@ -3,7 +3,8 @@ import { useMemo } from 'react'
 import { getContract } from '../utils'
 import { useActiveWeb3React } from './index'
 import {ArtPieceOneAddress,OkazzPollockAddress} from '../constants'
-import MIGRATOR_ABI from '../constants/ArtPieceOne.json'
+import ART_ONE_ABI from '../constants/Kgolid.json'
+import VERY_COMMON_ABI from '../constants/Okazz.json'
 
 // returns null on errors
 function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
@@ -21,9 +22,9 @@ function useContract(address: string | undefined, ABI: any, withSignerIfPossible
 }
 
 export function useArtPieceOne(): Contract | null {
-  return useContract(ArtPieceOneAddress, MIGRATOR_ABI.abi, true)
+  return useContract(ArtPieceOneAddress, ART_ONE_ABI.abi, true)
 }
 
 export function useOkazzPollock(): Contract | null {
-  return useContract(OkazzPollockAddress, MIGRATOR_ABI.abi, true)
+  return useContract(OkazzPollockAddress, VERY_COMMON_ABI.abi, true)
 }

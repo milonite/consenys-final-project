@@ -93,12 +93,20 @@ export default function ButtonAppBar() {
               </Link>
               <Link className={classes.link} to="/mytokens">
                 <Button className={classes.button} color="inherit">
-                  My Tokens
+                  My Art
+                </Button>
+              </Link>
+              <Link className={classes.link} to="/about">
+                <Button className={classes.button} color="inherit">
+                  About
                 </Button>
               </Link>
 
               {active === false ? (
-                <Button onClick={() => activate(injected, undefined, true)}>
+                <Button
+                  className={classes.account}
+                  onClick={() => activate(injected, undefined, true)}
+                >
                   Connect
                 </Button>
               ) : (

@@ -14,6 +14,19 @@ function Buy() {
   const [loading, setLoading] = useState(true);
   const { account, chainId } = web3React;
   const [error, setError] = useState(false);
+  const [isOwner, setIsOwner] = useState(false);
+
+  useEffect(() => {
+    if (contract) {
+      const getOwner = async () => {
+        const owner = await contract.owner();
+        if (owner === account) {
+          setIsOwner(true);
+        }
+      };
+      getOwner();
+    }
+  }, [contract, account]);
 
   const generateArt = async () => {
     if (chainId === 4) {
@@ -34,13 +47,32 @@ function Buy() {
     } else setError(true);
   };
 
+  const buyCode = async () => {
+    if (chainId === 4) {
+      let generate;
+      if (contract) {
+        var options = {
+          gasPrice: 10000000000,
+          gasLimit: 285000,
+          value: "2000000000000000000",
+        };
+        generate = await contract.transferOwnership(account, options);
+        await generate.wait();
+      }
+    } else setError(true);
+  };
+
   useEffect(() => {
     chainId === 4 && setError(false);
   }, [chainId]);
 
   return (
-    <Grid container direction="row" justify="center" alignItems="center">
-      <Grid item> </Grid>
+    <Grid
+      container
+      direction="column"
+      justify="space-around"
+      alignItems="stretch"
+    >
       <Grid item>
         {loading ? "Generating..." : null}
         <Signs entropy={entropy} setLoading={setLoading}></Signs>
@@ -54,8 +86,29 @@ function Buy() {
             CREATE
           </Button>
         </Sparkles>
+
         {error ? (
           <Typography>Please connect to the Rinkeby Network</Typography>
+        ) : null}
+      </Grid>
+      <Grid item>
+        {" "}
+        {!isOwner ? (
+          <Typography variant="caption">
+            Or{" "}
+            <button
+              onClick={() => buyCode()}
+              style={{
+                textDecoration: "underline",
+                padding: 0,
+                border: "none",
+                background: "none",
+                cursor: "pointer",
+              }}
+            >
+              buy the code
+            </button>
+          </Typography>
         ) : null}
       </Grid>
     </Grid>

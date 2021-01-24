@@ -59,6 +59,7 @@ interface IOverviewCard {
   author: string;
   tokenId: string;
   title: string;
+  owner: string;
   handleSelect: (art: string, tokenId: string) => void;
 }
 
@@ -67,6 +68,7 @@ export default function RecipeReviewCard({
   author,
   tokenId,
   title,
+  owner,
   handleSelect,
 }: IOverviewCard) {
   const classes = useStyles();
@@ -100,7 +102,7 @@ export default function RecipeReviewCard({
               >
                 <Grid item>
                   <Typography variant="body1">Owner </Typography>
-                  <Typography variant="body2">{author}</Typography>
+                  <Typography variant="body2">{owner}</Typography>
                 </Grid>
                 <Grid item>
                   <Typography variant="body1">Artist</Typography>

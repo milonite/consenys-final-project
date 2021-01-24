@@ -5,6 +5,7 @@ import BuyPollock from "./pages/buy_pollock";
 import MyTokens from "./pages/my_tokens_list";
 import Market from "./pages/market";
 import Landing from "./pages/landing";
+import About from "./pages/about";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
 
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/createBlankets" component={BuyBlankets} />
         <Route exact path="/mytokens" component={MyTokens} />
         <Route exact path="/market" component={Market} />
+        <Route exact path="/about" component={About} />
         <Route exact component={Landing} />
       </Switch>
     </div>
